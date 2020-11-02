@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.7'>
-  <model name='model'>
+  <model name='AGV'>
     <link name='link_0'>
       <inertial>
         <mass>1</mass>
