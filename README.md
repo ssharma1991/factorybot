@@ -1,6 +1,8 @@
 # robot-models
 
-This repo includes Robot and Environment models to be used with Gazebo
+This repo includes Robot and Environment models to be used with Gazebo. The included Gazebo world is shown below
+
+![Image of the Gazebo world](images/my_world.png)
 
 # Gazebo Tips:
 
@@ -18,7 +20,7 @@ cd /home/shashank/Documents/robot-models/build
 cmake ../ && make
 ```
 
-# Open the Gazebo Simulation
+# Open the Gazebo World
 ```
 cd /home/shashank/Documents/robot-models/world
 gazebo my_world --verbose
