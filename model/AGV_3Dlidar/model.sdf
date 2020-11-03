@@ -337,7 +337,7 @@
         </surface>
       </collision>
     </link>
-    <link name='lidar2D'>
+    <link name='lidar3D'>
       <inertial>
         <mass>1</mass>
         <inertia>
@@ -442,25 +442,30 @@
         <visualize>true</visualize>
         <update_rate>10</update_rate>
         <ray>
-        <scan>
-          <horizontal>
-            <samples>60</samples>
-            <resolution>1</resolution>
-            <min_angle>-1</min_angle>
-            <max_angle>1</max_angle>
-          </horizontal>
-          <vertical>
-            <samples>8</samples>
-            <resolution>1</resolution>
-            <min_angle>-.5</min_angle>
-            <max_angle>.5</max_angle>
-          </vertical>
-        </scan>
-        <range>
-          <min>1</min>
-          <max>30</max>
-          <resolution>0.02</resolution>
-        </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>.1</stddev>
+          </noise>
+          <scan>
+            <horizontal>
+              <samples>60</samples>
+              <resolution>1</resolution>
+              <min_angle>-1</min_angle>
+              <max_angle>1</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>8</samples>
+              <resolution>1</resolution>
+              <min_angle>-.5</min_angle>
+              <max_angle>.5</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>1</min>
+            <max>30</max>
+            <resolution>0.02</resolution>
+          </range>
         </ray>
       </sensor>
     </link>
@@ -696,9 +701,9 @@
         </ode>
       </physics>
     </joint>
-    <joint name='lidar2D_Base_JOINT' type='fixed'>
+    <joint name='lidar3D_Base_JOINT' type='fixed'>
       <parent>link_0</parent>
-      <child>lidar2D</child>
+      <child>lidar3D</child>
       <pose>0 0 0 0 -0 0</pose>
       <physics>
         <ode>
