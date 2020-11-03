@@ -99,7 +99,7 @@
     <model name='AGV_1'>
       <include>
         <static>0</static>
-        <uri>model://AGV</uri>
+        <uri>model://AGV_2Dlidar</uri>
         <pose>-10 -12 0 0 0 0</pose>
       </include>
     </model>
@@ -107,7 +107,7 @@
     <model name='AGV_2'>
       <include>
         <static>0</static>
-        <uri>model://AGV</uri>
+        <uri>model://AGV_3Dlidar</uri>
         <pose>2.7 10 0 0 0 1.5707</pose>
       </include>
     </model>

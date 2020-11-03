@@ -9,7 +9,7 @@ This repo includes Robot and Environment models to be used with Gazebo. The incl
 # Setting Models, Plugins & Worlds Path
 ```
 export GAZEBO_MODEL_PATH=/home/shashank/Documents/robot-models/model
-export GAZEBO_PLUGIN_PATH=/home/shashank/Documents/robot-models/script
+export GAZEBO_PLUGIN_PATH=/home/shashank/Documents/robot-models/build
 export GAZEBO_RESOURCE_PATH=/home/shashank/Documents/robot-models/world
 ```
 Check if the paths were set correctly using `env|grep -i gazebo`
@@ -26,3 +26,4 @@ cd /home/shashank/Documents/robot-models/world
 gazebo my_world --verbose
 
 ```
+If previous instances of gzserver have not ended gracefully, the command might not work. Use `killall -9 gzserver` and try again.
