@@ -23,7 +23,9 @@ cmake ../ && make
 # Open the Gazebo World
 ```
 cd /home/shashank/Documents/robot-models/world
-gazebo my_world --verbose
+gazebo AGVs --verbose
+gazebo building_with_AGVs --verbose
+gazebo factory_with_AGVs --verbose
 
 ```
 If previous instances of gzserver have not ended gracefully, the command might not work. Use `killall -9 gzserver` and try again.
