@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find agv_gazebo)/worlds/building.world"/>
+    <arg name="verbose" value="true"/>
+  </include>
+
+  <include file="$(find agv_gazebo)/launch/spawn_sdf.launch">
+    <arg name="robot_name" value="AGV_2Dlidar"/>
+    <arg name="x" value="-10"/>
+    <arg name="y" value="-12"/>
+    <arg name="z" value="0"/>
+    <arg name="roll" value="0"/>
+    <arg name="pitch" value="0"/>
+    <arg name="yaw" value="0"/>
+    <arg name="sdf_robot_file" value="$(find agv_gazebo)/models/AGV_2Dlidar/model.sdf"/>
+  </include>
+
+  <include file="$(find agv_gazebo)/launch/spawn_sdf.launch">
+    <arg name="robot_name" value="AGV_3Dlidar"/>
+    <arg name="x" value="2.7"/>
+    <arg name="y" value="10"/>
+    <arg name="z" value="0"/>
+    <arg name="roll" value="0"/>
+    <arg name="pitch" value="0"/>
+    <arg name="yaw" value="1.5707"/>
+    <arg name="sdf_robot_file" value="$(find agv_gazebo)/models/AGV_3Dlidar/model.sdf"/>
+  </include>
+</launch>

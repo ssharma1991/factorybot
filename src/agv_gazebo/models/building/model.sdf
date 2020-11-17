@@ -148,10 +148,10 @@
       <collision name='Wall_25_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>30.15 0.15 2.5</size>
+            <size>30.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
