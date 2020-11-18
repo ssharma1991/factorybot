@@ -1,0 +1,4 @@
+<launch>
+    <!-- Put robot urdf file in the ROS param server-->
+    <param name="robot_description" command="find $(agv_gazebo)/models/AGV_2Dlidar/model.urdf"/>
+</launch>

@@ -661,6 +661,10 @@
             <resolution>0.02</resolution>
           </range>
         </ray>
+        <plugin name="agv_2Dlidar" filename="libgazebo_ros_laser.so">
+          <topicName>/agv_2Dlidar/scan</topicName>
+          <frameName>map</frameName>
+        </plugin>
       </sensor>
     </link>
 

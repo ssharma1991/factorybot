@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(agv_gazebo)
+project(agv_slam)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,8 +7,7 @@ project(agv_gazebo)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS gazebo_ros)
-find_package(gazebo REQUIRED)
+find_package(catkin REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -101,7 +100,7 @@ find_package(gazebo REQUIRED)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES agv_gazebo
+#  LIBRARIES agv_slam
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
 )
@@ -116,15 +115,11 @@ include_directories(
 # include
 # ${catkin_INCLUDE_DIRS}
 )
-include_directories(${GAZEBO_INCLUDE_DIRS})
-link_directories(${GAZEBO_LIBRARY_DIRS})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/agv_gazebo.cpp
+#   src/${PROJECT_NAME}/agv_slam.cpp
 # )
-add_library(lidar3D_plugin SHARED src/lidar3D_plugin.cc)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -134,7 +129,7 @@ add_library(lidar3D_plugin SHARED src/lidar3D_plugin.cc)
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/agv_gazebo_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/agv_slam_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -150,7 +145,6 @@ add_library(lidar3D_plugin SHARED src/lidar3D_plugin.cc)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(lidar3D_plugin ${GAZEBO_LIBRARIES})
 
 #############
 ## Install ##
@@ -199,7 +193,7 @@ target_link_libraries(lidar3D_plugin ${GAZEBO_LIBRARIES})
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_agv_gazebo.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_agv_slam.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
