@@ -50,9 +50,12 @@
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>gazebo_ros_pkgs</build_depend>
+  <build_depend>velodyne_gazebo_plugins</build_depend>
   <build_depend>gazebo_ros</build_depend>
+
   <exec_depend>gazebo_ros_pkgs</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>velodyne_gazebo_plugins</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

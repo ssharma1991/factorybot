@@ -667,8 +667,8 @@
             <resolution>0.02</resolution>
           </range>
         </ray>
-        <plugin name="agv_3Dlidar" filename="libgazebo_ros_block_laser.so">
-          <topicName>/agv_3Dlidar/pointcloud</topicName>
+        <plugin name="agv_3Dlidar" filename="libgazebo_ros_velodyne_laser.so">
+          <topicName>/agv_3Dlidar/pointcloud2</topicName>
           <frameName>map</frameName>
         </plugin>
       </sensor>
