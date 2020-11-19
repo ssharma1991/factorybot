@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot>
+
+    <gazebo reference="lidar2D">
+        <sensor type="ray" name="sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>.05</stddev>
+            </noise>
+            <scan>
+                <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>0</min_angle>
+                <max_angle>6.283185</max_angle>
+                </horizontal>
+            </scan>
+            <range>
+                <min>1</min>
+                <max>30</max>
+                <resolution>0.02</resolution>
+            </range>
+            </ray>
+            <plugin name="agv_2Dlidar" filename="libgazebo_ros_laser.so">
+            <topicName>/agv_2Dlidar/scan</topicName>
+            <frameName>map</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="lidar3D">
+        <sensor type="ray" name="sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>.1</stddev>
+            </noise>
+            <scan>
+                <horizontal>
+                <samples>60</samples>
+                <resolution>1</resolution>
+                <min_angle>-1</min_angle>
+                <max_angle>1</max_angle>
+                </horizontal>
+                <vertical>
+                <samples>8</samples>
+                <resolution>1</resolution>
+                <min_angle>-.5</min_angle>
+                <max_angle>.5</max_angle>
+                </vertical>
+            </scan>
+            <range>
+                <min>1</min>
+                <max>30</max>
+                <resolution>0.02</resolution>
+            </range>
+            </ray>
+            <plugin name="agv_3Dlidar" filename="libgazebo_ros_velodyne_laser.so">
+            <topicName>/agv_3Dlidar/pointcloud2</topicName>
+            <frameName>map</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>
