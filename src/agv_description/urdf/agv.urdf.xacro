@@ -2,7 +2,7 @@
 <robot name="agv" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="$(find agv_description)/urdf/materials.xacro" />
-    <xacro:include filename="$(find agv_description)/urdf/agv.gazebo" />
+    <xacro:include filename="$(find agv_description)/urdf/agv.gazebo.xarco" />
 
     <!-- Constants for robot dimensions -->
     <xacro:property name="PI" value="3.1415926535897931"/>
@@ -99,8 +99,8 @@
     </link>
 
     <!-- AGV Wheels -->
-    <xacro:wheel_template name="wheelL" x="0" y="${(chassis_y-wheel_len)/2}" rad="${wheel_rad}" len="${wheel_len}"/>
-    <xacro:wheel_template name="wheelR" x="0" y="${-(chassis_y-wheel_len)/2}" rad="${wheel_rad}" len="${wheel_len}"/>
+    <xacro:wheel_template name="wheelL" x="0" y="${(chassis_y-wheel_len)/2+.01}" rad="${wheel_rad}" len="${wheel_len}"/>
+    <xacro:wheel_template name="wheelR" x="0" y="${-(chassis_y-wheel_len)/2-.01}" rad="${wheel_rad}" len="${wheel_len}"/>
     <xacro:wheel_template name="wheelC" x="${chassis_x}" y="0" rad="${wheel_rad}" len="${wheel_len}"/>
 
     <!-- AGV Lidar3D Sensor -->
