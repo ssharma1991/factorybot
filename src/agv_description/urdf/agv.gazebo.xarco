@@ -45,7 +45,7 @@
             </ray>
             <plugin name="lidar2D_plugin" filename="libgazebo_ros_laser.so">
             <topicName>/$(arg robot_name)/lidar2D/scan</topicName>
-            <frameName>map</frameName>
+            <frameName>lidar2D</frameName>
             </plugin>
         </sensor>
     </gazebo>
@@ -84,9 +84,30 @@
             </ray>
             <plugin name="lidar3D_plugin" filename="libgazebo_ros_velodyne_laser.so">
             <topicName>/$(arg robot_name)/lidar3D/pointcloud2</topicName>
-            <frameName>map</frameName>
+            <frameName>lidar3D</frameName>
             </plugin>
         </sensor>
     </gazebo>
+
+    <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+        <legacyMode>false</legacyMode>
+        <updateRate>60</updateRate>
+        <leftJoint>chassis_wheelL_joint</leftJoint>
+        <rightJoint>chassis_wheelR_joint</rightJoint>
+        <wheelSeparation>${chassis_z}</wheelSeparation>
+        <wheelDiameter>${2*wheel_rad}</wheelDiameter>
+
+        <commandTopic>$(arg robot_name)/cmd_vel</commandTopic>
+        <odometryTopic>$(arg robot_name)/odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>agv_CoordSys</robotBaseFrame>
+    </plugin>
+    </gazebo>
+
+    <!--
+        There exists a gazebo_ros_tricycle_drive plugin which would be better suited for AGV.
+        To DO: Since it is undocumented, figure out how to use it.
+    -->
 
 </robot>

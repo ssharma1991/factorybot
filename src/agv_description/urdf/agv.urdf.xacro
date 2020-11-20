@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <robot name="agv" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find agv_description)/urdf/materials.xacro" />
-    <xacro:include filename="$(find agv_description)/urdf/agv.gazebo.xarco" />
-
     <!-- Constants for robot dimensions -->
     <xacro:property name="PI" value="3.1415926535897931"/>
     <xacro:property name="chassis_x" value="1.5" /> <!-- length=1.5 meters -->
@@ -21,6 +18,11 @@
     <xacro:property name="wheel_rad" value="0.15" /> <!-- radius=0.15 meters-->
     <xacro:property name="wheel_len" value="0.30" /> <!-- length=0.30 meters-->
 
+    <!-- Include other xacro files-->
+    <xacro:include filename="$(find agv_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find agv_description)/urdf/agv.gazebo.xarco" />
+
+    <!-- Setup some useful xacro macros-->
     <xacro:macro name="visual_collision_template" params="x y z material *shape">
         <visual>
         <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
@@ -41,7 +43,7 @@
         <joint name="chassis_${name}_joint" type="continuous">
             <parent link="chassis"/>
             <child link="${name}"/>
-            <origin xyz="${x} ${y} 0.0" rpy="${PI/2} 0 0"/>
+            <origin xyz="${x} ${y} 0.0" rpy="${-PI/2} 0 0"/>
             <axis xyz="0 0 1"/>
         </joint>
 

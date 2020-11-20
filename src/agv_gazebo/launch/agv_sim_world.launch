@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="true"/>
+  </include>
+
+  <include file="$(find agv_gazebo)/launch/spawn_agv.launch">
+    <arg name="robot_name" value="AGV_1"/>
+    <arg name="xarco_robot_file" value="$(find agv_description)/urdf/agv.urdf.xacro"/>
+    <arg name="visualize_lidar3D" value="false"/>
+    <arg name="visualize_lidar2D" value="false"/>
+  </include>
+</launch>
