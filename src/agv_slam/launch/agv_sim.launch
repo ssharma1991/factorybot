@@ -2,13 +2,34 @@
     <!-- Put robot urdf file in the ROS param server -->
     <param name="robot_description" command="$(find xacro)/xacro '$(find agv_description)/urdf/agv.urdf.xacro'"/>
 
-    <!-- Start joint_state_publisher_gui if Gazebo is not running -->
+    <!-- Publish joint_states for each AGV link using robot_description on ROS param server-->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
 
-    <!-- Start robot_state_publisher to supply tf to Rviz -->
+    <!-- Publish tf to Rviz -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
-    <!-- Show in Rviz   -->
-    <node name="rviz" pkg="rviz" type="rviz"/>
+    <!-- Run Mapping-->
+    <node name="agv_slam_gmapping" pkg="gmapping" type="slam_gmapping" output="screen">
+        <remap from="scan" to="/AGV_1/lidar2D/scan"/>
+        <param name="base_frame" value="agv_CoordSys"/>
+        <param name="odom_frame" value="odom"/>
+        <param name="map_frame"  value="map"/>
+
+        <param name="map_update_interval" value="1.0"/> <!--Update map every 1s-->
+        <param name="maxUrange" value="30.0"/> <!--Max Usable Range of lidar-->
+        <param name="maxRange" value="31.0"/> <!--Max Range of lidar-->
+        <param name="minimumScore" value="25.0"/> <!--Threshold for scan matching-->
+        <param name="particles" value="100"/><!--Number of particles used in filter-->
+        <param name="temporalUpdate" value="0.5"/><!--Process scan every .5s -->
+
+        <param name="xmin" value="-150"/> <!--map size-->
+        <param name="ymin" value="-150"/> <!--map size-->
+        <param name="xmax" value="150"/> <!--map size-->
+        <param name="ymax" value="150"/> <!--map size-->
+        <param name="delta" value=".05"/> <!--map resolution= 5cm-->
+    </node>
+
+    <!-- Open Rviz   -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agv_slam)/rviz/gmapping.rviz"/>
 
 </launch>
