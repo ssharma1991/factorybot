@@ -9,10 +9,10 @@ else:
   import tty, termios
 
 AGV_MAX_LIN_VEL = 5
-AGV_MAX_ANG_VEL = 2.84
+AGV_MAX_ANG_VEL = 3.14*2
 
 LIN_VEL_STEP_SIZE = 0.2
-ANG_VEL_STEP_SIZE = 0.2
+ANG_VEL_STEP_SIZE = 0.5
 
 msg = """
 Control Your AGV!
@@ -81,7 +81,8 @@ if __name__=="__main__":
         settings = termios.tcgetattr(sys.stdin)
 
     rospy.init_node('agv_teleop')
-    pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+    topic_name=rospy.get_param('~robot_name')+"/cmd_vel"
+    pub = rospy.Publisher(topic_name, Twist, queue_size=10)
 
     target_linear_vel   = 0.0
     target_angular_vel  = 0.0

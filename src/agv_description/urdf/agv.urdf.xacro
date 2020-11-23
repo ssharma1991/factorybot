@@ -10,7 +10,7 @@
     <xacro:property name="mast_x" value="0.3" /> <!-- length=0.3 meters -->
     <xacro:property name="mast_z" value="3.0" /> <!-- height=3.0 meters-->
 
-    <xacro:property name="fork_x" value="2.5" /> <!-- length=2.5 meters-->
+    <xacro:property name="fork_x" value="1.5" /> <!-- length=1.5 meters-->
     <xacro:property name="fork_y" value="0.2" /> <!-- width=0.2 meters-->
     <xacro:property name="fork_z" value="0.05" /> <!-- height=0.05 meters-->
     <xacro:property name="fork_y_offset" value="0.15" /> <!-- offset from center=0.15 meters-->

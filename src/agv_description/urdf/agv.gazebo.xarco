@@ -9,12 +9,24 @@
     </gazebo>
     <gazebo reference="wheelL">
         <material>Gazebo/Black</material>
+        <mu>1</mu>
+        <mu2>1</mu2>
+        <slip>0</slip>
+        <slip2>0</slip2>
     </gazebo>
     <gazebo reference="wheelR">
         <material>Gazebo/Black</material>
+        <mu>1</mu>
+        <mu2>1</mu2>
+        <slip>0</slip>
+        <slip2>0</slip2>
     </gazebo>
     <gazebo reference="wheelC">
         <material>Gazebo/Black</material>
+        <mu>0</mu>
+        <mu2>0</mu2>
+        <slip>1</slip>
+        <slip2>1</slip2>
     </gazebo>
 
     <gazebo reference="lidar2D">
@@ -31,7 +43,7 @@
             </noise>
             <scan>
                 <horizontal>
-                <samples>360</samples>
+                <samples>${360*5}</samples>
                 <resolution>1</resolution>
                 <min_angle>0</min_angle>
                 <max_angle>6.283185</max_angle>
@@ -64,7 +76,7 @@
             </noise>
             <scan>
                 <horizontal>
-                <samples>60</samples>
+                <samples>${100*5}</samples>
                 <resolution>1</resolution>
                 <min_angle>-1</min_angle>
                 <max_angle>1</max_angle>
