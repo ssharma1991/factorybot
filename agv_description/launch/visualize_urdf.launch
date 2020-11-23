@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <launch>
     <!-- Put robot urdf file in the ROS param server -->
     <param name="robot_description" command="$(find xacro)/xacro '$(find agv_description)/urdf/agv.urdf.xacro'"/>
