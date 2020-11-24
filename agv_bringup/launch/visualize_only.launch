@@ -4,9 +4,4 @@
         <arg name="launch_prefix" value="gnome-terminal --tab -t 'gmapping' --"/>
         <arg name="agv_name" value="agv"/>
     </include>
-
-    <include file="$(find agv_teleop)/launch/keyboard_teleop.launch">
-        <arg name="launch_prefix" value="gnome-terminal --tab -t 'teleop' --"/>
-        <arg name="agv_name" value="agv"/>
-    </include>
 </launch>
