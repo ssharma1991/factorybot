@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
     <include file="$(find agv_slam)/launch/agv_gmapping.launch">
-        <arg name="launch_prefix" value="gnome-terminal --tab -t 'gmapping' --"/>
         <arg name="agv_name" value="agv"/>
     </include>
 </launch>
