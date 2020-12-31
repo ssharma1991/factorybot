@@ -4,6 +4,7 @@
     <xacro:arg name="visualize_lidar2D" default="false"/>
     <xacro:arg name="visualize_lidar3D" default="false"/>
 
+    <!-- Setting colors for parts of AGV -->
     <gazebo reference="chassis">
         <material>Gazebo/Orange</material>
     </gazebo>
@@ -29,6 +30,30 @@
         <slip2>1</slip2>
     </gazebo>
 
+
+    <!-- Differential Drive Controller -->
+    <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+        <legacyMode>false</legacyMode>
+        <updateRate>60</updateRate>
+        <leftJoint>chassis_wheelL_joint</leftJoint>
+        <rightJoint>chassis_wheelR_joint</rightJoint>
+        <wheelSeparation>${chassis_z}</wheelSeparation>
+        <wheelDiameter>${2*wheel_rad}</wheelDiameter>
+
+        <commandTopic>$(arg robot_name)/cmd_vel</commandTopic>
+        <odometryTopic>$(arg robot_name)/odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>agv_CoordSys</robotBaseFrame>
+    </plugin>
+    </gazebo>
+    <!--
+        There exists a gazebo_ros_tricycle_drive plugin which would be better suited for AGV.
+        To DO: Since it is undocumented, figure out how to use it.
+    -->
+
+
+    <!-- 2D Lidar -->
     <gazebo reference="lidar2D">
         <material>Gazebo/Red</material>
         <sensor type="ray" name="lidar2D_sensor">
@@ -62,6 +87,7 @@
         </sensor>
     </gazebo>
 
+    <!-- 3D Lidar -->
     <gazebo reference="lidar3D">
         <material>Gazebo/Green</material>
         <sensor type="ray" name="lidar3D_sensor">
@@ -101,25 +127,37 @@
         </sensor>
     </gazebo>
 
-    <gazebo>
-    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-        <legacyMode>false</legacyMode>
-        <updateRate>60</updateRate>
-        <leftJoint>chassis_wheelL_joint</leftJoint>
-        <rightJoint>chassis_wheelR_joint</rightJoint>
-        <wheelSeparation>${chassis_z}</wheelSeparation>
-        <wheelDiameter>${2*wheel_rad}</wheelDiameter>
-
-        <commandTopic>$(arg robot_name)/cmd_vel</commandTopic>
-        <odometryTopic>$(arg robot_name)/odom</odometryTopic>
-        <odometryFrame>odom</odometryFrame>
-        <robotBaseFrame>agv_CoordSys</robotBaseFrame>
-    </plugin>
+    <!-- Camera -->
+    <gazebo reference="camera">
+        <sensor type="camera" name="front_camera_sensor">
+        <update_rate>30.0</update_rate>
+        <camera name="head">
+            <horizontal_fov>1.3962634</horizontal_fov>
+            <image>
+            <width>800</width>
+            <height>800</height>
+            <format>R8G8B8</format>
+            </image>
+            <clip>
+            <near>0.02</near>
+            <far>300</far>
+            </clip>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>camera</cameraName>
+            <imageTopicName>/$(arg robot_name)/rgb/image_raw</imageTopicName>
+            <cameraInfoTopicName>/$(arg robot_name)/rgb/camera_info</cameraInfoTopicName>
+            <frameName>camera</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+        </plugin>
+        </sensor>
     </gazebo>
-
-    <!--
-        There exists a gazebo_ros_tricycle_drive plugin which would be better suited for AGV.
-        To DO: Since it is undocumented, figure out how to use it.
-    -->
 
 </robot>

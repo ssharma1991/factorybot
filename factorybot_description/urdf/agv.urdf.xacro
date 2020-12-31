@@ -129,4 +129,16 @@
         </xacro:visual_collision_template>
     </link>
 
+    <!-- AGV Camera Sensor -->
+    <joint name="chassis_camera_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="camera"/>
+        <origin xyz="${chassis_x+mast_x/2-.1} 0.0 ${chassis_z+.1}" rpy="0 0 0"/>
+    </joint>
+    <link name="camera">
+        <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="blue">
+            <box size=".2 .2 .2"/>
+        </xacro:visual_collision_template>
+    </link>
+
 </robot>
