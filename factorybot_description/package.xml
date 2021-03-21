@@ -2,7 +2,8 @@
 <package format="2">
   <name>factorybot_description</name>
   <version>0.0.0</version>
-  <description>The factorybot_description package contains urdf files for the factorybot.</description>
+  <description>The factorybot_description package contains urdf files for AGVs 
+  (Autonomated Guided Vehicles) and AMRs (Autonomous Mobile Robot).</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

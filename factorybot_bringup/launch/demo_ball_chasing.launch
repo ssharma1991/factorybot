@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <include file="$(find factorybot_slam)/launch/agv_gmapping.launch">
+    <include file="$(find factorybot_gazebo)/launch/sim_world.launch">
         <arg name="agv_name" value="agv"/>
     </include>
 </launch>

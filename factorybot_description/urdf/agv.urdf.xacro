@@ -136,7 +136,7 @@
         <origin xyz="${chassis_x+mast_x/2-.1} 0.0 ${chassis_z+.1}" rpy="0 0 0"/>
     </joint>
     <link name="camera">
-        <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="blue">
+        <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="white">
             <box size=".2 .2 .2"/>
         </xacro:visual_collision_template>
     </link>

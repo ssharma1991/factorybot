@@ -10,6 +10,6 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
     <!-- Show in Rviz   -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find factorybot_description)/rviz/visualize_urdf.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find factorybot_description)/rviz/visualize_agv_urdf.rviz"/>
 
 </launch>

@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<robot name="amr" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Constants for robot dimensions -->
+    <xacro:property name="PI" value="3.1415926535897931"/>
+    <xacro:property name="chassis_x" value="0.75" /> <!-- length=0.75 meters -->
+    <xacro:property name="chassis_y" value="0.5" /> <!-- width=0.5 meters -->
+    <xacro:property name="chassis_z" value="0.4" /> <!-- height=0.4 meters-->
+    <xacro:property name="caster_rad" value="0.02" />
+
+    <xacro:property name="wheel_rad" value="0.15" />
+    <xacro:property name="wheel_len" value="0.05" />
+
+    <xacro:property name="lidar_rad" value="0.05" />
+    <xacro:property name="lidar_len" value="0.08" />
+
+    <xacro:property name="camera_x" value="0.03" />
+    <xacro:property name="camera_y" value="0.12" />
+    <xacro:property name="camera_z" value="0.03" />
+
+    <!-- Include other xacro files-->
+    <xacro:include filename="$(find factorybot_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find factorybot_description)/urdf/amr.gazebo.xarco" />
+
+    <!-- Setup some useful xacro macros-->
+    <xacro:macro name="visual_collision_template" params="x y z material *shape">
+        <visual>
+        <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+        <geometry>
+            <xacro:insert_block name="shape" />
+        </geometry>
+        <material name="${material}"/>
+        </visual>
+
+        <collision>
+        <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+        <geometry>
+            <xacro:insert_block name="shape" />
+        </geometry>
+        </collision>
+    </xacro:macro>
+    <xacro:macro name="wheel_template" params="name x y rad len">
+        <joint name="chassis_${name}_joint" type="continuous">
+            <parent link="chassis"/>
+            <child link="${name}"/>
+            <origin xyz="${x} ${y} 0.0" rpy="${-PI/2} 0 0"/>
+            <axis xyz="0 0 1"/>
+        </joint>
+
+        <link name="${name}">
+            <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="black">
+                <cylinder radius="${rad}" length="${len}" />
+            </xacro:visual_collision_template>
+
+            <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1"/>
+            <inertia ixx="0.0145833" ixy="0" ixz="0"
+                    iyy="0.0145833" iyz="0"
+                    izz="0.0125" />
+            </inertial>
+        </link>
+    </xacro:macro>
+
+
+    <!-- AMR Description Starts -->
+    <link name="amr_CoordSys"/>
+    <joint name="base_chassis_joint" type="fixed">
+        <parent link="amr_CoordSys"/>
+        <child link="chassis"/>
+        <origin xyz="0.0 0.0 ${wheel_rad}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- AMR Chassis -->
+    <link name="chassis">
+        <!-- Boxes representing AMR base plate -->
+        <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="orange">
+            <box size="${chassis_x/2} ${chassis_y/2} ${chassis_z/10}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${chassis_x*3/8}" y="0.0" z="0.0" material="orange">
+            <box size="${chassis_x/4} ${chassis_y} ${chassis_z/10}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${-chassis_x*3/8}" y="0.0" z="0.0" material="orange">
+            <box size="${chassis_x/4} ${chassis_y} ${chassis_z/10}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="0.0" y="${(chassis_y-wheel_len)/2}" z="0.0" material="orange">
+            <box size="${chassis_x/2} ${wheel_len} ${chassis_z/10}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="0.0" y="${-(chassis_y-wheel_len)/2}" z="0.0" material="orange">
+            <box size="${chassis_x/2} ${wheel_len} ${chassis_z/10}"/>
+        </xacro:visual_collision_template>
+
+        <!-- Boxes representing AMR top plate and its supports-->
+        <xacro:visual_collision_template x="${chassis_x*3/8}" y="0.0" z="${chassis_z/4}" material="orange">
+            <box size="${chassis_x/20} ${chassis_y/2} ${chassis_z/2}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${-chassis_x*3/8}" y="0.0" z="${chassis_z/4}" material="orange">
+            <box size="${chassis_x/20} ${chassis_y/2} ${chassis_z/2}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="0.0" y="0.0" z="${wheel_rad+chassis_z/20+(chassis_z-wheel_rad*2)*.1}" material="orange">
+            <box size="${chassis_x} ${chassis_y} ${chassis_z/10}"/>
+        </xacro:visual_collision_template>
+
+        <!-- Cylinders and spheres representing AMR casters-->
+        <xacro:visual_collision_template x="${(chassis_x/2-caster_rad)}" y="${(chassis_y/2-caster_rad)}" z="${-(wheel_rad-caster_rad)/2}" material="orange">
+            <cylinder radius="${caster_rad}" length="${wheel_rad-caster_rad}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${(chassis_x/2-caster_rad)}" y="${(chassis_y/2-caster_rad)}" z="${-(wheel_rad-caster_rad)}" material="orange">
+            <sphere radius="${caster_rad-.001}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${(chassis_x/2-caster_rad)}" y="${-(chassis_y/2-caster_rad)}" z="${-(wheel_rad-caster_rad)/2}" material="orange">
+            <cylinder radius="${caster_rad}" length="${wheel_rad-caster_rad}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${(chassis_x/2-caster_rad)}" y="${-(chassis_y/2-caster_rad)}" z="${-(wheel_rad-caster_rad)}" material="orange">
+            <sphere radius="${caster_rad-.001}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${-(chassis_x/2-caster_rad)}" y="${(chassis_y/2-caster_rad)}" z="${-(wheel_rad-caster_rad)/2}" material="orange">
+            <cylinder radius="${caster_rad}" length="${wheel_rad-caster_rad}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${-(chassis_x/2-caster_rad)}" y="${(chassis_y/2-caster_rad)}" z="${-(wheel_rad-caster_rad)}" material="orange">
+            <sphere radius="${caster_rad-.001}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${-(chassis_x/2-caster_rad)}" y="${-(chassis_y/2-caster_rad)}" z="${-(wheel_rad-caster_rad)/2}" material="orange">
+            <cylinder radius="${caster_rad}" length="${wheel_rad-caster_rad}"/>
+        </xacro:visual_collision_template>
+        <xacro:visual_collision_template x="${-(chassis_x/2-caster_rad)}" y="${-(chassis_y/2-caster_rad)}" z="${-(wheel_rad-caster_rad)}" material="orange">
+            <sphere radius="${caster_rad-.001}"/>
+        </xacro:visual_collision_template>
+        
+
+        <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="100"/>
+        <inertia ixx="60" ixy="0" ixz="0"
+                iyy="60" iyz="0"
+                izz="60" />
+        </inertial>
+    </link>
+
+    <!-- AMR Wheels -->
+    <xacro:wheel_template name="wheelL" x="0" y="${(chassis_y-wheel_len*3.5)/2}" rad="${wheel_rad}" len="${wheel_len}"/>
+    <xacro:wheel_template name="wheelR" x="0" y="${-(chassis_y-wheel_len*3.5)/2}" rad="${wheel_rad}" len="${wheel_len}"/>
+
+    <!-- AMR Lidar2D Sensor (Top Right) -->
+    <joint name="chassis_lidar2D_top_right_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="lidar2D_TR"/>
+        <origin xyz="${chassis_x/2-lidar_rad} ${chassis_y/2-lidar_rad} ${chassis_z/20+lidar_len/2}" rpy="0 0 0"/>
+    </joint>
+    <link name="lidar2D_TR">
+        <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="red">
+            <cylinder radius="${lidar_rad}" length="${lidar_len}" />
+        </xacro:visual_collision_template>
+    </link>
+
+    <!-- AGV Lidar2D Sensor (Bottom Left) -->
+    <joint name="chassis_lidar2D_bottom_left_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="lidar2D_BL"/>
+        <origin xyz="${-(chassis_x/2-lidar_rad)} ${-(chassis_y/2-lidar_rad)} ${chassis_z/20+lidar_len/2}" rpy="0 0 0"/>
+    </joint>
+    <link name="lidar2D_BL">
+        <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="red">
+            <cylinder radius="${lidar_rad}" length="${lidar_len}" />
+        </xacro:visual_collision_template>
+    </link>
+
+    <!-- AGV Camera Sensor -->
+    <joint name="chassis_camera_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="camera"/>
+        <origin xyz="${chassis_x/2-camera_x/2} 0.0 ${chassis_z/20+camera_z/2}" rpy="0 0 0"/>
+    </joint>
+    <link name="camera">
+        <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="white">
+            <box size="${camera_x} ${camera_y} ${camera_z}"/>
+        </xacro:visual_collision_template>
+    </link>
+
+</robot>
