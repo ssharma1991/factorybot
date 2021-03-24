@@ -7,7 +7,7 @@
   <arg name="roll" default="0"/>
   <arg name="pitch" default="0"/>
   <arg name="yaw" default="0"/>
-  <arg name="xarco_robot_file" default=""/>
+  <arg name="xarco_robot_file" default="$(find factorybot_description)/urdf/amr.urdf.xacro"/>
   <arg name="visualize_lidar2D" default="false"/>
 
   <!-- Load the URDF into the ROS Parameter Server -->

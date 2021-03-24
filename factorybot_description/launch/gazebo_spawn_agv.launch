@@ -7,7 +7,7 @@
   <arg name="roll" default="0"/>
   <arg name="pitch" default="0"/>
   <arg name="yaw" default="0"/>
-  <arg name="xarco_robot_file" default=""/>
+  <arg name="xarco_robot_file" default="$(find factorybot_description)/urdf/agv.urdf.xacro"/>
   <arg name="visualize_lidar2D" default="false"/>
   <arg name="visualize_lidar3D" default="false"/>
 

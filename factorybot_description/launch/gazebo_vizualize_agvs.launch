@@ -7,14 +7,12 @@
   <include file="$(find factorybot_description)/launch/gazebo_spawn_agv.launch">
     <arg name="robot_name" value="AGV_2Dlidar"/>
     <arg name="y" value="30"/>
-    <arg name="xarco_robot_file" value="$(find factorybot_description)/urdf/agv.urdf.xacro"/>
     <arg name="visualize_lidar2D" value="true"/>
   </include>
 
   <include file="$(find factorybot_description)/launch/gazebo_spawn_agv.launch">
     <arg name="robot_name" value="AGV_3Dlidar"/>
     <arg name="y" value="-30"/>
-    <arg name="xarco_robot_file" value="$(find factorybot_description)/urdf/agv.urdf.xacro"/>
     <arg name="visualize_lidar3D" value="true"/>
   </include>
 </launch>

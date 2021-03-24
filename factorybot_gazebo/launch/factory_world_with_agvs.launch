@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find agv_gazebo)/worlds/factory.world"/>
+    <arg name="world_name" value="$(find factorybot_gazebo)/worlds/factory.world"/>
     <arg name="verbose" value="true"/>
   </include>
 
-  <include file="$(find factorybot_gazebo)/launch/spawn_agv.launch">
+  <include file="$(find factorybot_description)/launch/gazebo_spawn_agv.launch">
     <arg name="robot_name" value="AGV_2Dlidar"/>
     <arg name="x" value="-5.59045"/>
     <arg name="y" value="4.46812"/>
-    <arg name="xarco_robot_file" value="$(find agv_description)/urdf/agv.urdf.xacro"/>
     <arg name="visualize_lidar2D" value="true"/>
   </include>
 
-  <include file="$(find factorybot_gazebo)/launch/spawn_agv.launch">
+  <include file="$(find factorybot_description)/launch/gazebo_spawn_agv.launch">
     <arg name="robot_name" value="AGV_3Dlidar"/>
     <arg name="x" value="25.375"/>
     <arg name="y" value="-3.79495"/>
-    <arg name="xarco_robot_file" value="$(find agv_description)/urdf/agv.urdf.xacro"/>
     <arg name="visualize_lidar3D" value="true"/>
   </include>
 </launch>

@@ -5,8 +5,6 @@
   </include>
 
   <include file="$(find factorybot_description)/launch/gazebo_spawn_amr.launch">
-    <arg name="robot_name" value="AMR"/>
-    <arg name="xarco_robot_file" value="$(find factorybot_description)/urdf/amr.urdf.xacro"/>
     <arg name="visualize_lidar2D" value="true"/>
   </include>
 </launch>

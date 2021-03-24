@@ -147,7 +147,7 @@
         <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
             <alwaysOn>true</alwaysOn>
             <updateRate>0.0</updateRate>
-            <cameraName>camera</cameraName>
+            <cameraName>$(arg robot_name)/camera</cameraName>
             <imageTopicName>/$(arg robot_name)/rgb/image_raw</imageTopicName>
             <cameraInfoTopicName>/$(arg robot_name)/rgb/camera_info</cameraInfoTopicName>
             <frameName>camera</frameName>
