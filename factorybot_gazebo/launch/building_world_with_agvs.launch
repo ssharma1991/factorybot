@@ -9,7 +9,6 @@
     <arg name="robot_name" value="AGV_2Dlidar"/>
     <arg name="x" value="-10"/>
     <arg name="y" value="-12"/>
-    <arg name="visualize_lidar2D" value="true"/>
   </include>
 
   <include file="$(find factorybot_description)/launch/gazebo_spawn_agv.launch">
@@ -17,6 +16,5 @@
     <arg name="x" value="2.7"/>
     <arg name="y" value="10"/>
     <arg name="yaw" value="1.5707"/>
-    <arg name="visualize_lidar3D" value="true"/>
   </include>
 </launch>

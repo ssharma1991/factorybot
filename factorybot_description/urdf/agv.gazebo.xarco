@@ -26,8 +26,8 @@
         <material>Gazebo/Black</material>
         <mu>0</mu>
         <mu2>0</mu2>
-        <slip>1</slip>
-        <slip2>1</slip2>
+        <slip>0</slip>
+        <slip2>0</slip2>
     </gazebo>
 
 
@@ -38,9 +38,10 @@
         <updateRate>60</updateRate>
         <leftJoint>chassis_wheelL_joint</leftJoint>
         <rightJoint>chassis_wheelR_joint</rightJoint>
-        <wheelSeparation>${chassis_z}</wheelSeparation>
+        <wheelSeparation>${chassis_y}</wheelSeparation>
         <wheelDiameter>${2*wheel_rad}</wheelDiameter>
-
+        <wheelAcceleration>0</wheelAcceleration>
+        <wheelTorque>5</wheelTorque>
         <commandTopic>$(arg robot_name)/cmd_vel</commandTopic>
         <odometryTopic>$(arg robot_name)/odom</odometryTopic>
         <odometryFrame>odom</odometryFrame>

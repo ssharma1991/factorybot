@@ -807,10 +807,10 @@
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
       <visual name='Wall_37_Visual'>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <material>
@@ -830,10 +830,10 @@
       <collision name='Wall_37_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
@@ -889,10 +889,10 @@
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
       <visual name='Wall_38_Visual'>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <material>
@@ -912,10 +912,10 @@
       <collision name='Wall_38_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
@@ -971,10 +971,10 @@
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
       <visual name='Wall_39_Visual'>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <material>
@@ -994,10 +994,10 @@
       <collision name='Wall_39_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
@@ -1053,10 +1053,10 @@
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
       <visual name='Wall_40_Visual'>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <material>
@@ -1076,10 +1076,10 @@
       <collision name='Wall_40_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
@@ -1335,10 +1335,10 @@
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
       <visual name='Wall_46_Visual'>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <material>
@@ -1358,10 +1358,10 @@
       <collision name='Wall_46_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
@@ -1417,10 +1417,10 @@
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
       <visual name='Wall_47_Visual'>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <material>
@@ -1440,10 +1440,10 @@
       <collision name='Wall_47_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
@@ -1499,10 +1499,10 @@
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
       <visual name='Wall_48_Visual'>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <material>
@@ -1522,10 +1522,10 @@
       <collision name='Wall_48_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
@@ -1581,10 +1581,10 @@
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
       <visual name='Wall_49_Visual'>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <material>
@@ -1604,10 +1604,10 @@
       <collision name='Wall_49_Collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose>0 0 1.25 0 -0 0</pose>
+        <pose>0 0 2 0 -0 0</pose>
         <geometry>
           <box>
-            <size>1.15 0.15 2.5</size>
+            <size>1.15 0.15 4</size>
           </box>
         </geometry>
         <surface>
