@@ -10,10 +10,11 @@
   <arg name="xarco_robot_file" default="$(find factorybot_description)/urdf/amr.urdf.xacro"/>
   <arg name="visualize_lidar2D" default="false"/>
 
-  <!-- Load the URDF into the ROS Parameter Server -->
+  <!-- Convert the XARCO into URDF and load it on the ROS Parameter Server -->
   <param name="robot_description_$(arg robot_name)" command="$(find xacro)/xacro '$(arg xarco_robot_file)' 
   robot_name:=$(arg robot_name) visualize_lidar2D:=$(arg visualize_lidar2D)" />
 
+  <!-- Spawn the URDF into Gazebo -->
   <node name="$(arg robot_name)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
   args="-urdf -model $(arg robot_name) -param robot_description_$(arg robot_name) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) "/>
 </launch>

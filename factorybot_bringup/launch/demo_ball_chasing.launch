@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <include file="$(find factorybot_gazebo)/launch/sim_world.launch">
-        <arg name="agv_name" value="agv"/>
+    <!-- Spawn the Gazebo world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find factorybot_gazebo)/worlds/building.world"/>
+        <arg name="verbose" value="true"/>
+    </include>
+
+    <!-- Spawn the Robot urdf -->
+    <include file="$(find factorybot_description)/launch/gazebo_spawn_amr.launch">
+        <arg name="robot_name" value="AMR"/>
+        <arg name="x" value="-10"/>
+        <arg name="y" value="-12"/>
+    </include>
+
+    <!-- Spawn the ball which will be followed -->
+    <arg name="sdf_name" default="my_ball"/>
+    <node name="$(arg sdf_name)_spawn_sdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+  args="-sdf -model $(arg sdf_name) -file $(find factorybot_ball_chaser)/models/$(arg sdf_name)/model.sdf -x -8 -y -12 -z .2"/>
+
+    <!-- Spawn the relevant ROSnodes -->
+    <include file="$(find factorybot_ball_chaser)/launch/ball_chaser.launch"/>
+
+    <!-- Open rviz visualization -->
+    <include file="$(find factorybot_description)/launch/rviz_visualize_amr_urdf.launch">
+        <arg name="rviz_config" value="$(find factorybot_ball_chaser)/rviz/ball_chaser.rviz"/>
     </include>
 </launch>

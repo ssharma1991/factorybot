@@ -148,8 +148,8 @@
             <alwaysOn>true</alwaysOn>
             <updateRate>0.0</updateRate>
             <cameraName>$(arg robot_name)/camera</cameraName>
-            <imageTopicName>/$(arg robot_name)/rgb/image_raw</imageTopicName>
-            <cameraInfoTopicName>/$(arg robot_name)/rgb/camera_info</cameraInfoTopicName>
+            <imageTopicName>/$(arg robot_name)/camera/rgb/image_raw</imageTopicName>
+            <cameraInfoTopicName>/$(arg robot_name)/camera/rgb/camera_info</cameraInfoTopicName>
             <frameName>camera</frameName>
             <hackBaseline>0.07</hackBaseline>
             <distortionK1>0.0</distortionK1>
