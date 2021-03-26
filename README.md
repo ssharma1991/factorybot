@@ -1,17 +1,22 @@
 # FactoryBot
-This repo is a ROS metapacakge which can be used to simulate AGVs in warehouses. The packages included are:
+This repo is a ROS metapacakge which can be used to simulate AGVs or AMRs in warehouses. The packages included are:
+- `factorybot_bringup` : Launch files to easily run demos
 - `factorybot_gazebo` : Files to create virtual warehouse environments
-- `factorybot_description` : Files to create factory robots like AGVs
+- `factorybot_description` : Files to create factory robots like an AGV or AMR
 - `factorybot_teleop` : Files to control factorybot using keyboard in virtual environment
 - `factorybot_slam` : Files to setup use of GMapping to create occupancy grids
-- `factorybot_bringup` : Launch files to easily run simulations
+- `factorybot_ball_chaser` : Files to make the bot chase a white ball in virtual environment
 
-The robot description contains AGV with 2D and 3D lidar equipped as shown below
-![Image of the AGVs](images/AGVs.png)
 
-The available Gazebo worlds to simulate factory environments are shown below
-![Image of the building world](images/building.png)
-![Image of the factory world](images/factory.jpg)
+The `factorybot_description` package contains urdf files for AGV and AMR, equipped with lidars and cameras as shown below
+![Image of the AGVs](images/AGV_rviz.png)
+![Image of the AGVs](images/AGVs_gazebo.png)
+![Image of the AMR](images/AMR_rviz.png)
+![Image of the AMR](images/AMR_gazebo.png)
+
+The available Gazebo worlds in `factorybot_gazebo` package which can be used to simulate factory environments are shown below
+![Image of the building world](images/building_world.png)
+![Image of the factory world](images/factory_world.png)
 
 # Procedure to use the package
 
@@ -35,8 +40,10 @@ The available Gazebo worlds to simulate factory environments are shown below
     catkin_make
     source devel/setup.bash
 
-## Run
-    roslaunch factorybot_bringup simulation.launch
+## Run demos
+    roslaunch factorybot_bringup demo_gmapping.launch
+    roslaunch factorybot_bringup demo_ball_chasing.launch
+
 
 
 # Gazebo Tips:
