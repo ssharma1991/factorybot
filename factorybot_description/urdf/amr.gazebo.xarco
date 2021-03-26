@@ -31,13 +31,13 @@
     <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
         <legacyMode>false</legacyMode>
-        <updateRate>60</updateRate>
+        <updateRate>20</updateRate>
         <leftJoint>chassis_wheelL_joint</leftJoint>
         <rightJoint>chassis_wheelR_joint</rightJoint>
         <wheelSeparation>${chassis_y}</wheelSeparation>
         <wheelDiameter>${2*wheel_rad}</wheelDiameter>
         <wheelAcceleration>0</wheelAcceleration>
-        <wheelTorque>5</wheelTorque>
+        <wheelTorque>20</wheelTorque>
         <commandTopic>$(arg robot_name)/cmd_vel</commandTopic>
         <odometryTopic>$(arg robot_name)/odom</odometryTopic>
         <odometryFrame>odom</odometryFrame>

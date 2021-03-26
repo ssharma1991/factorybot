@@ -46,10 +46,12 @@ void process_image_callback(const sensor_msgs::Image img)
     int col_middle = (leftmost_white_px + rightmost_white_px)/2;
     if (col_middle < img.width * 0.4) {
         std::cout<<"Ball located on LEFT"<<std::endl;
-        drive_robot(0.3, 1);
+        float scale_fact=(img.width * 0.5 - col_middle)/(img.width * 0.5);
+        drive_robot(0.3, scale_fact * 1);
     } else if (col_middle > img.width * 0.6) {
         std::cout<<"Ball located on RIGHT"<<std::endl;
-        drive_robot(0.3, -1);
+        float scale_fact=(col_middle - img.width * 0.5)/(img.width * 0.5);
+        drive_robot(0.3, scale_fact * -1);
     } else if (leftmost_white_px < (img.width * 0.4) && rightmost_white_px > (img.width * 0.6)) {
         std::cout<<"Ball located too CLOSE"<<std::endl;
         drive_robot(0, 0);
