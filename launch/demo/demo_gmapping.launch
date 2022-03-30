@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Spawn the Gazebo world and robot urdf-->
+    <include file="$(find factorybot)/launch/gazebo/sim_world.launch">
+        <arg name="factorybot_type" value="agv"/>
+        <arg name="factorybot_name" value="agv"/>
+    </include>
+
+    <!-- Open rviz visualization -->
+    <include file="$(find factorybot)/launch/demo_models/rviz_visualize_agv_urdf.launch">
+        <arg name="rviz_config" value="$(find factorybot)/rviz/gmapping.rviz"/>
+    </include>
+    
+    <!-- Start gmapping to create an occupancy grid map -->
+    <include file="$(find factorybot)/launch/slam/agv_gmapping.launch">
+        <arg name="launch_prefix" value="gnome-terminal --tab -t 'gmapping' --"/>
+        <arg name="agv_name" value="agv"/>
+    </include>
+
+    <!-- Start the teleop terminal to move robot manually -->
+    <include file="$(find factorybot)/launch/navigation/keyboard_teleop.launch">
+        <arg name="launch_prefix" value="gnome-terminal --tab -t 'teleop' --"/>
+        <arg name="factorybot_name" value="agv"/>
+    </include>
+</launch>

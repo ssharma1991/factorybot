@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="launch_prefix" default=""/>
+    <arg name="factorybot_name" default="agv_1"/>
+
+    <node name="factorybot_teleop_keyboard" pkg="factorybot" type="agv_teleop_key" output="screen" launch-prefix="$(arg launch_prefix)">
+        <param name="robot_name" value="$(arg factorybot_name)"/>
+    </node>
+</launch>

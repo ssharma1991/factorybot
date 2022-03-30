@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="factorybot_type" default="agv"/>
+  <arg name="factorybot_name" default="agv_1"/>
+
+  <!-- Spawn the Warehouse environment in Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find factorybot)/warehouse/building.world"/>
+    <arg name="verbose" value="true"/>
+  </include>
+
+  <!-- Spawn the Robot urdf in Gazebo-->
+  <include file="$(find factorybot)/launch/gazebo/spawn_$(arg factorybot_type).launch">
+    <arg name="robot_name" value="$(arg factorybot_name)"/>
+    <arg name="x" value="-10"/>
+    <arg name="y" value="-12"/>
+  </include>
+</launch>

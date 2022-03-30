@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:arg name="robot_name" default="amr"/>
+    <xacro:arg name="visualize_lidar2D" default="false"/>
+
+    <!-- Setting colors for parts of AGV -->
+    <gazebo reference="chassis">
+        <material>Gazebo/Orange</material>
+        <mu>0</mu>
+        <mu2>0</mu2>
+        <slip>0</slip>
+        <slip2>0</slip2>
+    </gazebo>
+    <gazebo reference="wheelL">
+        <material>Gazebo/Black</material>
+        <mu>1</mu>
+        <mu2>1</mu2>
+        <slip>0</slip>
+        <slip2>0</slip2>
+    </gazebo>
+    <gazebo reference="wheelR">
+        <material>Gazebo/Black</material>
+        <mu>1</mu>
+        <mu2>1</mu2>
+        <slip>0</slip>
+        <slip2>0</slip2>
+    </gazebo>
+
+
+    <!-- Differential Drive Controller -->
+    <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+        <legacyMode>false</legacyMode>
+        <updateRate>20</updateRate>
+        <leftJoint>chassis_wheelL_joint</leftJoint>
+        <rightJoint>chassis_wheelR_joint</rightJoint>
+        <wheelSeparation>${chassis_y}</wheelSeparation>
+        <wheelDiameter>${2*wheel_rad}</wheelDiameter>
+        <wheelAcceleration>0</wheelAcceleration>
+        <wheelTorque>20</wheelTorque>
+        <commandTopic>$(arg robot_name)/cmd_vel</commandTopic>
+        <odometryTopic>$(arg robot_name)/odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>amr_CoordSys</robotBaseFrame>
+    </plugin>
+    </gazebo>
+
+    <!-- 2D Lidars -->
+    <gazebo reference="lidar2D_TR">
+        <material>Gazebo/Red</material>
+        <sensor type="ray" name="lidar2D_TR_sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>$(arg visualize_lidar2D)</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>.05</stddev>
+            </noise>
+            <scan>
+                <horizontal>
+                <samples>${270*5}</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.570796</min_angle>
+                <max_angle>3.141593</max_angle>
+                </horizontal>
+            </scan>
+            <range>
+                <min>1</min>
+                <max>15</max>
+                <resolution>0.02</resolution>
+            </range>
+            </ray>
+            <plugin name="lidar2D_plugin" filename="libgazebo_ros_laser.so">
+            <topicName>/$(arg robot_name)/lidar2D_TR/scan</topicName>
+            <frameName>lidar2D_TR</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+    <gazebo reference="lidar2D_BL">
+        <material>Gazebo/Red</material>
+        <sensor type="ray" name="lidar2D_BL_sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>$(arg visualize_lidar2D)</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>.05</stddev>
+            </noise>
+            <scan>
+                <horizontal>
+                <samples>${270*5}</samples>
+                <resolution>1</resolution>
+                <min_angle>1.570796</min_angle>
+                <max_angle>6.283185</max_angle>
+                </horizontal>
+            </scan>
+            <range>
+                <min>1</min>
+                <max>15</max>
+                <resolution>0.02</resolution>
+            </range>
+            </ray>
+            <plugin name="lidar2D_plugin" filename="libgazebo_ros_laser.so">
+            <topicName>/$(arg robot_name)/lidar2D_BL/scan</topicName>
+            <frameName>lidar2D_BL</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <!-- Camera -->
+    <gazebo reference="camera">
+        <material>Gazebo/White</material>
+        <sensor type="camera" name="front_camera_sensor">
+        <update_rate>30.0</update_rate>
+        <camera name="head">
+            <horizontal_fov>1.3962634</horizontal_fov>
+            <image>
+            <width>800</width>
+            <height>800</height>
+            <format>R8G8B8</format>
+            </image>
+            <clip>
+            <near>0.02</near>
+            <far>300</far>
+            </clip>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>$(arg robot_name)/camera</cameraName>
+            <imageTopicName>/$(arg robot_name)/camera/rgb/image_raw</imageTopicName>
+            <cameraInfoTopicName>/$(arg robot_name)/camera/rgb/camera_info</cameraInfoTopicName>
+            <frameName>camera</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+        </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

@@ -1,4 +1,0 @@
-<launch>
-  <node name="drive_bot" type="drive_bot" pkg="factorybot_ball_chaser" output="screen"/>
-  <node name="process_image" type="process_image" pkg="factorybot_ball_chaser" output="screen"/>
-</launch>

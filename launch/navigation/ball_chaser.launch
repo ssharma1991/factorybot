@@ -1,0 +1,4 @@
+<launch>
+  <node name="drive_bot" pkg="factorybot" type="drive_bot" output="screen"/>
+  <node name="process_image" pkg="factorybot" type="process_image" output="screen"/>
+</launch>
