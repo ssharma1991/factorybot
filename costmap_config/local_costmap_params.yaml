@@ -1,0 +1,14 @@
+local_costmap:
+   global_frame: odom
+   robot_base_frame: amr_CoordSys
+   update_frequency: 5.0
+   publish_frequency: 5.0
+   width: 10.0
+   height: 10.0
+   resolution: 0.05
+   static_map: false
+   rolling_window: true
+   
+   # Inflation Layer
+   inflation_radius: 0.8 # 0.55
+   cost_scaling_factor: 4.0  # 10.0

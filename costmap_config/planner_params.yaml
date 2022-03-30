@@ -1,0 +1,24 @@
+controller_frequency: 10 #20
+
+TrajectoryPlannerROS:
+  acc_lim_x: 0.8 #default: 2.5 m/s^2
+  acc_lim_y: 0.0 #default: 2.5 m/s^2
+  acc_lim_theta: 0.314 #default: 3.2 rad/s^2
+  max_vel_x: 2.0 #default: 0.5 m/s
+  min_vel_x: 0.1 #default: 0.1 m/s
+  max_vel_theta: 0.8 #default: 1.0 rad/s
+  min_vel_theta: -0.8 #default: -1.0 rad/s
+  min_in_place_vel_theta: 0.314 #default: 0.4 rad/s
+  holonomic_robot: false
+
+  yaw_goal_tolerance: 0.157
+  xy_goal_tolerance: 0.50
+  latch_xy_goal_tolerance: true
+
+  sim_time: 2.5 #default: 1.0 sec
+  vx_samples: 12 #default: 3
+  vtheta_samples: 12 #default: 20
+
+  path_distance_bias: 0.8 #default: 0.6
+  goal_distance_bias: 0.5 #default: 0.8
+  occdist_scale: 0.01 #default: 0.01

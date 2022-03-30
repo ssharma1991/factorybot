@@ -7,9 +7,11 @@
     <xacro:property name="chassis_y" value="0.5" /> <!-- width=0.5 meters -->
     <xacro:property name="chassis_z" value="0.4" /> <!-- height=0.4 meters-->
     <xacro:property name="caster_rad" value="0.02" />
+    <xacro:property name="chassis_mass" value="100" />
 
     <xacro:property name="wheel_rad" value="0.15" />
     <xacro:property name="wheel_len" value="0.05" />
+    <xacro:property name="wheel_mass" value="2" />
 
     <xacro:property name="lidar_rad" value="0.05" />
     <xacro:property name="lidar_len" value="0.08" />
@@ -39,7 +41,7 @@
         </geometry>
         </collision>
     </xacro:macro>
-    <xacro:macro name="wheel_template" params="name x y rad len">
+    <xacro:macro name="wheel_template" params="name x y rad length mass">
         <joint name="chassis_${name}_joint" type="continuous">
             <parent link="chassis"/>
             <child link="${name}"/>
@@ -49,15 +51,16 @@
 
         <link name="${name}">
             <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="black">
-                <cylinder radius="${rad}" length="${len}" />
+                <cylinder radius="${rad}" length="${length}" />
             </xacro:visual_collision_template>
 
             <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
-            <mass value="1"/>
-            <inertia ixx="0.0145833" ixy="0" ixz="0"
-                    iyy="0.0145833" iyz="0"
-                    izz="0.0125" />
+            <mass value="${mass}"/>
+            <!-- Cylinder: Izz=(1/2)*m*r^2, Ixx=Iyy=(1/12)*m*(3*r^2+h^2)-->
+            <inertia ixx="${(1/12)*mass*(3*pow(rad,2)+pow(length,2))}" ixy="0" ixz="0"
+                    iyy="${(1/12)*mass*(3*pow(rad,2)+pow(length,2))}" iyz="0"
+                    izz="${.5*mass*pow(rad,2)}" />
             </inertial>
         </link>
     </xacro:macro>
@@ -130,22 +133,23 @@
 
         <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="100"/>
-        <inertia ixx="60" ixy="0" ixz="0"
-                iyy="60" iyz="0"
-                izz="60" />
+        <mass value="${chassis_mass}"/>
+        <!-- Box: Ixx=(1/12)*m*(y^2+z^2), Iyy=(1/12)*m*(x^2+z^2), Izz=(1/12)*m*(x^2+y^2)-->
+        <inertia ixx="${(1/12)*chassis_mass*(pow(chassis_y,2)+pow(chassis_z,2))}" ixy="0" ixz="0"
+                iyy="${(1/12)*chassis_mass*(pow(chassis_x,2)+pow(chassis_z,2))}" iyz="0"
+                izz="${(1/12)*chassis_mass*(pow(chassis_x,2)+pow(chassis_y,2))}" />
         </inertial>
     </link>
 
     <!-- AMR Wheels -->
-    <xacro:wheel_template name="wheelL" x="0" y="${(chassis_y-wheel_len*3.5)/2}" rad="${wheel_rad}" len="${wheel_len}"/>
-    <xacro:wheel_template name="wheelR" x="0" y="${-(chassis_y-wheel_len*3.5)/2}" rad="${wheel_rad}" len="${wheel_len}"/>
+    <xacro:wheel_template name="wheelL" x="0" y="${(chassis_y-wheel_len*3.5)/2}" rad="${wheel_rad}" length="${wheel_len}"  mass="${wheel_mass}"/>
+    <xacro:wheel_template name="wheelR" x="0" y="${-(chassis_y-wheel_len*3.5)/2}" rad="${wheel_rad}" length="${wheel_len}"  mass="${wheel_mass}"/>
 
     <!-- AMR Lidar2D Sensor (Top Right) -->
     <joint name="chassis_lidar2D_top_right_joint" type="fixed">
         <parent link="chassis"/>
         <child link="lidar2D_TR"/>
-        <origin xyz="${chassis_x/2-lidar_rad} ${chassis_y/2-lidar_rad} ${chassis_z/20+lidar_len/2}" rpy="0 0 0"/>
+        <origin xyz="${chassis_x/2} ${chassis_y/2} ${chassis_z/20+lidar_len/2}" rpy="0 0 0"/>
     </joint>
     <link name="lidar2D_TR">
         <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="red">

@@ -82,7 +82,7 @@ if __name__=="__main__":
 
     rospy.init_node('agv_teleop')
     topic_name=rospy.get_param('~robot_name')+"/cmd_vel"
-    pub = rospy.Publisher(topic_name, Twist, queue_size=10)
+    pub = rospy.Publisher(topic_name, Twist, queue_size=1)
 
     target_linear_vel   = 0.0
     target_angular_vel  = 0.0

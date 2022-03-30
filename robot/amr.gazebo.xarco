@@ -56,7 +56,7 @@
             <noise>
                 <type>gaussian</type>
                 <mean>0.0</mean>
-                <stddev>.05</stddev>
+                <stddev>.015</stddev>
             </noise>
             <scan>
                 <horizontal>
@@ -67,7 +67,7 @@
                 </horizontal>
             </scan>
             <range>
-                <min>1</min>
+                <min>.1</min>
                 <max>15</max>
                 <resolution>0.02</resolution>
             </range>
@@ -88,7 +88,7 @@
             <noise>
                 <type>gaussian</type>
                 <mean>0.0</mean>
-                <stddev>.05</stddev>
+                <stddev>.015</stddev>
             </noise>
             <scan>
                 <horizontal>
@@ -99,7 +99,7 @@
                 </horizontal>
             </scan>
             <range>
-                <min>1</min>
+                <min>.1</min>
                 <max>15</max>
                 <resolution>0.02</resolution>
             </range>

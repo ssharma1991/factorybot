@@ -8,7 +8,7 @@
 
     <!-- Open rviz visualization -->
     <include file="$(find factorybot)/launch/demo_models/rviz_visualize_amr_urdf.launch">
-        <arg name="rviz_config" value="$(find factorybot)/rviz/ball_chaser.rviz"/>
+        <arg name="rviz_config" value="$(find factorybot)/rviz_config/ball_chaser.rviz"/>
     </include>
 
     <!-- Spawn the ball which will be followed -->

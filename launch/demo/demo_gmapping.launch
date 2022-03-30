@@ -8,7 +8,7 @@
 
     <!-- Open rviz visualization -->
     <include file="$(find factorybot)/launch/demo_models/rviz_visualize_agv_urdf.launch">
-        <arg name="rviz_config" value="$(find factorybot)/rviz/gmapping.rviz"/>
+        <arg name="rviz_config" value="$(find factorybot)/rviz_config/gmapping.rviz"/>
     </include>
     
     <!-- Start gmapping to create an occupancy grid map -->
