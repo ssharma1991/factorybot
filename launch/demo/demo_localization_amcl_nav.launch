@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Spawn the Gazebo world and robot urdf-->
+    <include file="$(find factorybot)/launch/gazebo/sim_world.launch">
+        <arg name="factorybot_type" value="amr"/>
+        <arg name="factorybot_name" value="AMR"/>
+    </include>
+
+    <!-- Open rviz visualization -->
+    <include file="$(find factorybot)/launch/demo_models/rviz_visualize_amr_urdf.launch">
+        <arg name="rviz_config" value="$(find factorybot)/rviz_config/localization_amr.rviz"/>
+    </include>
+
+    <!-- AMCL -->
+    <include file="$(find factorybot)/launch/slam/amcl.launch"/>
+
+    <!-- Navigation using move_base -->
+    <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+        <remap from="scan" to="AMR/lidar2D_TR/scan"/>
+        <remap from="cmd_vel" to="AMR/cmd_vel"/>
+        <param name="base_global_planner" value="navfn/NavfnROS" />
+        <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+
+        <rosparam file="$(find factorybot)/costmap_config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find factorybot)/costmap_config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find factorybot)/costmap_config/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find factorybot)/costmap_config/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find factorybot)/costmap_config/planner_params.yaml" command="load" />
+    </node>
+</launch>

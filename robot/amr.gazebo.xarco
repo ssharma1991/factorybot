@@ -8,8 +8,8 @@
         <material>Gazebo/Orange</material>
         <mu>0</mu>
         <mu2>0</mu2>
-        <slip>0</slip>
-        <slip2>0</slip2>
+        <slip>1</slip>
+        <slip2>1</slip2>
     </gazebo>
     <gazebo reference="wheelL">
         <material>Gazebo/Black</material>
@@ -111,37 +111,47 @@
         </sensor>
     </gazebo>
 
-    <!-- Camera -->
-    <gazebo reference="camera">
+    <!-- RGBD Camera -->
+    <gazebo reference="cameraRGBD">
         <material>Gazebo/White</material>
-        <sensor type="camera" name="front_camera_sensor">
-        <update_rate>30.0</update_rate>
-        <camera name="head">
-            <horizontal_fov>1.3962634</horizontal_fov>
-            <image>
-            <width>800</width>
-            <height>800</height>
-            <format>R8G8B8</format>
-            </image>
-            <clip>
-            <near>0.02</near>
-            <far>300</far>
-            </clip>
-        </camera>
-        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-            <alwaysOn>true</alwaysOn>
-            <updateRate>0.0</updateRate>
-            <cameraName>$(arg robot_name)/camera</cameraName>
-            <imageTopicName>/$(arg robot_name)/camera/rgb/image_raw</imageTopicName>
-            <cameraInfoTopicName>/$(arg robot_name)/camera/rgb/camera_info</cameraInfoTopicName>
-            <frameName>camera</frameName>
-            <hackBaseline>0.07</hackBaseline>
-            <distortionK1>0.0</distortionK1>
-            <distortionK2>0.0</distortionK2>
-            <distortionK3>0.0</distortionK3>
-            <distortionT1>0.0</distortionT1>
-            <distortionT2>0.0</distortionT2>
-        </plugin>
+        <sensor type="depth" name="front_cameraRGBD_sensor">
+            <update_rate>30.0</update_rate>
+            <visualize>true</visualize>
+            <camera>
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>640</width> <!--Typical Resolutions: 480x320, 640x480, 800x480, 1280x720, 1920x1080-->
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>$(arg robot_name)/camera</cameraName>
+                <imageTopicName>/$(arg robot_name)/camera/rgb/image_raw</imageTopicName>
+                <cameraInfoTopicName>/$(arg robot_name)/camera/rgb/camera_info</cameraInfoTopicName>
+                <depthImageTopicName>/$(arg robot_name)/camera/depth/image_raw</depthImageTopicName>
+                <depthImageCameraInfoTopicName>/$(arg robot_name)/camera/depth/camera_info</depthImageCameraInfoTopicName>
+                <pointCloudTopicName>/$(arg robot_name)/camera/depth/points</pointCloudTopicName>
+                <frameName>cameraRGBD_local</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+                <pointCloudCutoff>0.02</pointCloudCutoff>
+                <pointCloudCutoffMax>300</pointCloudCutoffMax>
+                <CxPrime>0.0</CxPrime>
+                <Cx>0.0</Cx>
+                <Cy>0.0</Cy>
+                <focalLength>0.0</focalLength>
+            </plugin>
         </sensor>
     </gazebo>
 

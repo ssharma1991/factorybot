@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Spawn the Gazebo world and robot urdf-->
+    <include file="$(find factorybot)/launch/gazebo/sim_world.launch">
+        <arg name="factorybot_type" value="amr"/>
+        <arg name="factorybot_name" value="AMR"/>
+    </include>
+
+    <!-- Open rviz visualization -->
+    <include file="$(find factorybot)/launch/demo_models/rviz_visualize_amr_urdf.launch">
+        <arg name="rviz_config" value="$(find factorybot)/rviz_config/localization_amr.rviz"/>
+    </include>
+
+    <!-- RTAB Map -->
+    <include file="$(find factorybot)/launch/slam/rtabmap_mapping.launch"/>
+
+    <!-- Start the teleop terminal to move robot manually -->
+    <include file="$(find factorybot)/launch/navigation/keyboard_teleop.launch">
+        <arg name="launch_prefix" value="gnome-terminal --tab -t 'teleop' --"/>
+        <arg name="factorybot_name" value="AMR"/>
+    </include>
+</launch>

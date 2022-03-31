@@ -149,7 +149,7 @@
     <joint name="chassis_lidar2D_top_right_joint" type="fixed">
         <parent link="chassis"/>
         <child link="lidar2D_TR"/>
-        <origin xyz="${chassis_x/2} ${chassis_y/2} ${chassis_z/20+lidar_len/2}" rpy="0 0 0"/>
+        <origin xyz="${chassis_x/2-lidar_rad} ${chassis_y/2-lidar_rad} ${chassis_z/20+lidar_len/2}" rpy="0 0 0"/>
     </joint>
     <link name="lidar2D_TR">
         <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="red">
@@ -169,16 +169,23 @@
         </xacro:visual_collision_template>
     </link>
 
-    <!-- AGV Camera Sensor -->
-    <joint name="chassis_camera_joint" type="fixed">
+    <!-- AGV RGBD Camera Sensor -->
+    <joint name="chassis_cameraRGBD_joint" type="fixed">
         <parent link="chassis"/>
-        <child link="camera"/>
+        <child link="cameraRGBD"/>
         <origin xyz="${chassis_x/2-camera_x/2} 0.0 ${chassis_z/20+camera_z/2}" rpy="0 0 0"/>
     </joint>
-    <link name="camera">
+    <link name="cameraRGBD">
         <xacro:visual_collision_template x="0.0" y="0.0" z="0.0" material="white">
             <box size="${camera_x} ${camera_y} ${camera_z}"/>
         </xacro:visual_collision_template>
+    </link>
+    <joint name="cameraRGBD_local_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}"/>
+        <parent link="cameraRGBD"/>
+        <child link="cameraRGBD_local"/>
+    </joint>
+    <link name="cameraRGBD_local">
     </link>
 
 </robot>
