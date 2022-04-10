@@ -8,15 +8,19 @@
 
     <!-- Open rviz visualization -->
     <include file="$(find factorybot)/launch/demo_models/rviz_visualize_amr_urdf.launch">
-        <arg name="rviz_config" value="localization_amr.rviz"/>
+        <arg name="rviz_config" value="pick_and_drop_amr.rviz"/>
     </include>
 
-    <!-- RTAB Map -->
-    <include file="$(find factorybot)/launch/slam/rtabmap_localization.launch"/>
+    <!-- AMCL -->
+    <include file="$(find factorybot)/launch/slam/amcl.launch">
+        <arg name="map_file" value="building_agv_slam.yaml"/>
+    </include>
 
-    <!-- Start the teleop terminal to move robot manually -->
-    <include file="$(find factorybot)/launch/navigation/keyboard_teleop.launch">
-        <arg name="launch_prefix" value="gnome-terminal --tab -t 'teleop' --"/>
+    <!-- Navigation using move_base -->
+    <include file="$(find factorybot)/launch/navigation/path_planner.launch">
         <arg name="factorybot_name" value="AMR"/>
     </include>
+
+    <!-- Autonomous pick and place -->
+    <include file="$(find factorybot)/launch/navigation/pick_and_drop.launch"/>
 </launch>

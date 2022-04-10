@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node name="pick_objects" pkg="factorybot" type="pick_objects" output="screen"/>
+    <node name="add_markers" pkg="factorybot" type="add_markers_new" output="screen"/>
+</launch>

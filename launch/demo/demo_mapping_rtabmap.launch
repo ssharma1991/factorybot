@@ -8,7 +8,7 @@
 
     <!-- Open rviz visualization -->
     <include file="$(find factorybot)/launch/demo_models/rviz_visualize_amr_urdf.launch">
-        <arg name="rviz_config" value="$(find factorybot)/rviz_config/localization_amr.rviz"/>
+        <arg name="rviz_config" value="localization_amr.rviz"/>
     </include>
 
     <!-- RTAB Map -->

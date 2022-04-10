@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="factorybot_name" default="amr_1"/>
+
+    <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+        <remap from="scan" to="$(arg factorybot_name)/lidar2D_TR/scan"/>
+        <remap from="cmd_vel" to="$(arg factorybot_name)/cmd_vel"/>
+        <param name="base_global_planner" value="navfn/NavfnROS" />
+        <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+
+        <rosparam file="$(find factorybot)/costmap_config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find factorybot)/costmap_config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find factorybot)/costmap_config/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find factorybot)/costmap_config/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find factorybot)/costmap_config/planner_params.yaml" command="load" />
+    </node>
+</launch>

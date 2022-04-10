@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
     <!-- Map Server -->
-    <arg name="map_file" default="$(find factorybot)/maps/building.yaml"/>
-    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+    <arg name="map_file" default="building.yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find factorybot)/maps/$(arg map_file)" />
 
     <!-- AMCL Node -->
     <node name="amcl" pkg="amcl" type="amcl" output="screen">

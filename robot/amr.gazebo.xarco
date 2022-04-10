@@ -6,24 +6,18 @@
     <!-- Setting colors for parts of AGV -->
     <gazebo reference="chassis">
         <material>Gazebo/Orange</material>
-        <mu>0</mu>
+        <mu1>0</mu1>
         <mu2>0</mu2>
-        <slip>1</slip>
-        <slip2>1</slip2>
     </gazebo>
     <gazebo reference="wheelL">
         <material>Gazebo/Black</material>
-        <mu>1</mu>
+        <mu1>1</mu1>
         <mu2>1</mu2>
-        <slip>0</slip>
-        <slip2>0</slip2>
     </gazebo>
     <gazebo reference="wheelR">
         <material>Gazebo/Black</material>
-        <mu>1</mu>
+        <mu1>1</mu1>
         <mu2>1</mu2>
-        <slip>0</slip>
-        <slip2>0</slip2>
     </gazebo>
 
 

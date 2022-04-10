@@ -11,6 +11,9 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   roscpp
   std_msgs
+  actionlib
+  move_base_msgs
+  visualization_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -47,11 +50,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+  FILES
+  pick_place_load.msg
+)
 
 ## Generate services in the 'srv' folder
 add_service_files(
@@ -104,7 +106,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES agv_description
-#  CATKIN_DEPENDS other_catkin_pkg
+  CATKIN_DEPENDS message_runtime
 #  DEPENDS system_lib
 )
 
@@ -132,6 +134,9 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 # add_executable(${PROJECT_NAME}_node src/agv_description_node.cpp)
 add_executable(drive_bot src/ball_chaser/drive_bot.cpp)
 add_executable(process_image src/ball_chaser/process_image.cpp)
+add_executable(pick_objects src/pick_and_drop/pick_objects.cpp)
+add_executable(add_markers src/pick_and_drop/add_markers.cpp)
+add_executable(add_markers_new src/pick_and_drop/add_markers_new.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -150,6 +155,9 @@ add_dependencies(drive_bot process_image ${${PROJECT_NAME}_EXPORTED_TARGETS} ${c
 # )
 target_link_libraries(drive_bot ${catkin_LIBRARIES})
 target_link_libraries(process_image ${catkin_LIBRARIES})
+target_link_libraries(pick_objects ${catkin_LIBRARIES})
+target_link_libraries(add_markers ${catkin_LIBRARIES})
+target_link_libraries(add_markers_new ${catkin_LIBRARIES})
 
 #############
 ## Install ##

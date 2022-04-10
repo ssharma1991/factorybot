@@ -17,10 +17,10 @@
         <param name="particles" value="100"/><!--Number of particles used in filter-->
         <param name="temporalUpdate" value="0.5"/><!--Process scan every .5s -->
 
-        <param name="xmin" value="-150"/> <!--map size-->
-        <param name="ymin" value="-150"/> <!--map size-->
-        <param name="xmax" value="150"/> <!--map size-->
-        <param name="ymax" value="150"/> <!--map size-->
+        <param name="xmin" value="-20"/> <!--map size-->
+        <param name="ymin" value="-20"/> <!--map size-->
+        <param name="xmax" value="20"/> <!--map size-->
+        <param name="ymax" value="20"/> <!--map size-->
         <param name="delta" value=".05"/> <!--map resolution= 5cm-->
     </node>
 

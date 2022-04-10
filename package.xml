@@ -50,10 +50,14 @@
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
   <depend>gazebo_ros</depend>
   <depend>velodyne_gazebo_plugins</depend>
   <depend>roscpp</depend>
   <depend>std_msgs</depend>
+  <depend>actionlib</depend>
+  <depend>move_base_msgs</depend>
+  <depend>visualization_msgs</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
